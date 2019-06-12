@@ -1,5 +1,5 @@
-{
-  "presets": [
+module.exports = {
+  presets: [
     ["env", {
       "modules": false,
       "targets": {
@@ -8,5 +8,8 @@
     }],
     "stage-2"
   ],
-  "plugins": ["transform-vue-jsx", "transform-runtime"]
+  plugins: [
+    "transform-vue-jsx",
+    "transform-runtime"
+    ]
 }
