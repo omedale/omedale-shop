@@ -1,7 +1,7 @@
 <template>
 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
   <div class="product">
-    <router-link :to="'/cart'" class="product-link">
+    <div @click="showProductDetail" class="product-link">
       <div class="product-image">
         <img
             class="img-responsive" :src="product.image" alt="">
@@ -20,9 +20,6 @@
             <a-button type="primary" class="pull-right" shape="circle" icon="shopping-cart" :size="'small'" />
           </div>
         </div>
-    </router-link>
-    <div class="">
-
     </div>
   </div>
 </div>
@@ -31,7 +28,16 @@
 <script>
 export default {
   name: 'product-item',
-  props: ['product']
+  props: ['product'],
+  data () {
+    return {
+    }
+  },
+  methods: {
+    showProductDetail () {
+      this.$emit('show-product-detail', this.product)
+    }
+  }
 }
 </script>
 
@@ -46,6 +52,7 @@ export default {
 .product-link {
   display: block;
   color: #3D3D3D;
+  cursor: pointer;
 }
 
 .product-link:hover {
