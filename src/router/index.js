@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import MainLayout from '@/layouts/Main'
-import LoginLayout from '@/layouts/Login'
+import AuthLayout from '@/layouts/Auth'
 
 Vue.use(Router)
 
@@ -20,12 +20,16 @@ export default new Router({
     },
     {
       path: '/customer',
-      component: LoginLayout,
+      component: AuthLayout,
       redirect: '/customer/login',
       children: [
         {
           path: '/customer/login',
           component: () => import('../views/customer/login')
+        },
+        {
+          path: '/customer/register',
+          component: () => import('../views/customer/register')
         }
       ]
     }

@@ -1,13 +1,32 @@
 <template>
 <div class="row">
   <div class="col-sm-6 offset-sm-3 text-center">
-       <h1 class="display-4">Login</h1>
+       <h1 class="display-4">Register</h1>
        <a-form
           id="components-form-demo-normal-login"
           :form="form"
           class="login-form"
           @submit="handleSubmit"
         >
+         <a-form-item>
+            <a-input
+              v-decorator="[
+                'name',
+                {
+                  rules: [{
+                    required: true, message: 'Please input your name!',
+                  }]
+                }
+              ]"
+              placeholder="Name"
+            >
+              <a-icon
+                slot="prefix"
+                type="user"
+                style="color: rgba(0,0,0,.25)"
+              />
+            </a-input>
+          </a-form-item>
           <a-form-item>
             <a-input
               v-decorator="[
@@ -51,10 +70,10 @@
               html-type="submit"
               class="login-form-button"
             >
-              Log in
+              Register
             </a-button>
-            Or <router-link :to="'/customer/register'">
-              Register now!
+            Or <router-link :to="'/customer/login'">
+              Login
             </router-link>
           </a-form-item>
         </a-form>
@@ -64,10 +83,9 @@
 
 <script>
 export default {
-  name: 'Login',
+  name: 'Register',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
     }
   },
   beforeCreate () {
@@ -86,7 +104,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   #components-form-demo-normal-login .login-form {
   max-width: 300px;
