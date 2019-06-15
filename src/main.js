@@ -7,10 +7,12 @@ import './global.scss'
 import 'ant-design-vue/dist/antd.css'
 
 import {
-  Button, Layout, Input, Icon, Checkbox, Modal, Carousel,
-  Form, Menu, Radio, Select, Pagination, Row, Col
+  Button, Layout, Input, Icon, Checkbox, Modal, Carousel, Avatar,
+  Form, Menu, Radio, Select, Pagination, Row, Col, Table, Tag, Badge
 } from 'ant-design-vue'
 
+Vue.use(Avatar)
+Vue.use(Badge)
 Vue.use(Button)
 Vue.use(Carousel)
 Vue.use(Checkbox)
@@ -25,6 +27,8 @@ Vue.use(Radio)
 Vue.use(Row)
 Vue.use(Pagination)
 Vue.use(Select)
+Vue.use(Table)
+Vue.use(Tag)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
