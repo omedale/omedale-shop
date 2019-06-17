@@ -19,6 +19,10 @@ export default new Router({
         {
           path: '/cart',
           component: () => import('../views/cart')
+        },
+        {
+          path: '/checkout',
+          component: () => import('../views/checkout')
         }
       ]
     },

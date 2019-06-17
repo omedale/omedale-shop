@@ -24,38 +24,27 @@
   box-shadow: rgba(0, 0, 0, 0.075) 0px 0.125rem 0.25rem !important;
   margin-bottom: 1rem;
 }
-.ant-btn-primary {
-  background-color: #1DA57A !important;
-  border-color: #1DA57A  !important;
-  border-radius: '2px';
-  -webkit-border-radius: '2px';
-  -moz-border-radius: '2px';
-  -ms-border-radius: '2px';
-  -o-border-radius: '2px';
+
+.ant-form-item {
+  margin-bottom: 0 !important;
 }
 
-.ant-pagination-item-active {
-  border-color: #4de3b3  !important;
+.ant-form-item-label {
+  margin-bottom: 0 !important;
 }
 
-.ant-btn-primary:hover, .ant-btn-primary:focus {
-  background-color: #09825c !important;
-  border-color: #09825c  !important;
+.action-buttons-center {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
-.ant-btn:hover, .ant-btn:focus  {
-  border-color: #09825c  !important;
-  color: #1DA57A !important;
+.action-buttons-space-between {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
-.ant-input:hover{
-  border-color: #4de3b3 !important;
-}
-
-.ant-pagination-prev:focus .ant-pagination-item-link, .ant-pagination-next:focus .ant-pagination-item-link, .ant-pagination-prev:hover .ant-pagination-item-link, .ant-pagination-next:hover .ant-pagination-item-link {
-  border-color: #4de3b3 !important;
-}
-
-a {
-  color:  #1DA57A;
+.anchor-button {
+  text-decoration: none !important;
 }

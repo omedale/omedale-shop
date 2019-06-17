@@ -18,6 +18,7 @@
           <th scope="col">Size</th>
           <th scope="col">Quantity</th>
           <th scope="col">Price</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -42,6 +43,9 @@
           <td>
             <span>{{ toPrice(item.price).toFormat() }}</span>
           </td>
+          <td>
+             <a-button shape="circle" icon="delete" />
+          </td>
         </tr>
         <tr>
           <th scope="row"></th>
@@ -49,6 +53,7 @@
           <td></td>
           <td></td>
            <td><span class="cart-price">{{ getSubtotal.toFormat() }}</span></td>
+           <td></td>
         </tr>
         <tr>
            <th scope="row"></th>
@@ -56,6 +61,7 @@
            <td></td>
            <td></td>
            <td> <span class="cart-price">{{ getTaxAmount.toFormat() }}</span></td>
+           <td></td>
         </tr>
         <tr>
            <th scope="row"></th>
@@ -63,18 +69,19 @@
            <td></td>
            <td></td>
            <td> <span class="cart-price">{{ getTotal.toFormat() }}</span></td>
+           <td></td>
         </tr>
       </tbody>
     </table>
-    <div class="action-buttons">
+    <div class="action-buttons-center">
       <a-button-group>
-        <a-button>
-          <router-link :to="'/'">
+        <a-button  type="primary">
+          <router-link class="anchor-button " :to="'/'">
             <a-icon type="left" />Back to Shop
           </router-link>
         </a-button>
-        <a-button>
-          <router-link :to="'#'">
+        <a-button  type="primary">
+          <router-link class="anchor-button " :to="'/checkout'">
             Checkout<a-icon type="right" />
            </router-link>
         </a-button>
@@ -174,12 +181,6 @@ export default {
   font-weight: normal;
 }
 
-.action-buttons {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
 .language {
   margin: 0 2px;
   font-size: 60%;
@@ -210,6 +211,7 @@ export default {
   font-size: inherit;
   font-weight: normal;
   color: rgba(51, 58, 69, 0.8);
+  font-weight: bold;
 }
 .cart-price {
   color: #333a45;
