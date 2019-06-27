@@ -12,7 +12,9 @@
         <div :class="[$style.footer, 'text-center']">
           <ul class="list-unstyled list-inline mb-3">
             <li class="list-inline-item">
-              <a href="javascript: void(0);">Support</a>
+               <router-link :to="'/'">
+                  Home
+               </router-link>
             </li>
             <li class="list-inline-item">
               <a href="javascript: void(0);">Contacts</a>

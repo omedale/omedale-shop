@@ -211,9 +211,10 @@
           :description="'Payment'"
           :currency="'USD'"
           :amount="20"
-          :cardnumber="'4242 4242 4242 4242'"
           :email="'omedale@gmail.com'"
           :allow-remember-me="false"
+          @done="done"
+          @opened="opened"
           @closed="closed"
           @canceled="canceled"
         ></vue-stripe-checkout>
@@ -262,9 +263,20 @@ export default {
       // token - is the token object
       // args - is an object containing the billing and shipping address if enabled
       const { token, args } = await this.$refs.checkoutRef.open()
+      console.log('............2222222........')
       console.log(token)
       console.log(args)
       console.log('....................')
+    },
+    done ({token, args}) {
+      // token - is the token object
+      // args - is an object containing the billing and shipping address if enabled
+      // do stuff...
+      console.log(token)
+      console.log(args)
+    },
+    opened () {
+      // do stuff
     },
     closed () {
       // do stuff
