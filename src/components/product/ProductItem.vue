@@ -4,7 +4,7 @@
     <div @click="showProductDetail" class="product-link">
       <div class="product-image">
         <img
-            class="img-responsive" :src="product.image" alt="">
+            class="img-responsive" :src="`static/product_images/${product.image}`" alt="">
         </div>
         <div class="card-product ">
           <div class="info-wrap">

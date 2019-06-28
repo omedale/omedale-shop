@@ -263,10 +263,8 @@ export default {
       // token - is the token object
       // args - is an object containing the billing and shipping address if enabled
       const { token, args } = await this.$refs.checkoutRef.open()
-      console.log('............2222222........')
       console.log(token)
       console.log(args)
-      console.log('....................')
     },
     done ({token, args}) {
       // token - is the token object
