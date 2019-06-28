@@ -9,6 +9,10 @@
 .ant-btn .anticon {
   vertical-align: 0.08rem !important;
 }
+.flex-pull-right {
+  display: flex;
+  justify-content: flex-end;
+}
 .filter-item {
   margin-left: 3px;
   margin-right: 3px;
@@ -59,4 +63,8 @@ a {
 
 .anticon {
   vertical-align: unset;
+}
+
+.primary-color {
+  color: #1DA57A !important;
 }

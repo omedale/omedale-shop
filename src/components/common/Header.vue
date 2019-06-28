@@ -6,11 +6,23 @@
         <div class="row align-items-center">
           <div class="col-lg-6 col-sm-12">
             <router-link :to="'/'" class="home">
-              <h3>My Shop</h3>
+              <h3 class="primary-color">My Shop</h3>
             </router-link>
           </div>
-          <div class="col-lg-6 col-sm-12">
-            <div class="float-right no-gutters py-1">
+          <div class="flex-pull-right col-lg-6 col-sm-12">
+            <div class="customer-wrap py-1">
+              <span>Hi</span>
+              <span v-if="customerName">
+                <span class="name">{{customerName}}</span> |
+                <span @click="logout" class="logout primary-color">Logout</span>
+              </span>
+              <span v-else>
+                |
+                <span><router-link :to="'/customer/login'">Login</router-link></span> or
+                <span><router-link :to="'/customer/register'">Register</router-link></span>
+              </span>
+            </div>
+            <div class="no-gutters py-1">
                 <a-input-search
                 placeholder="search"
                 class="search-bar"
@@ -32,17 +44,33 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import store from '@/store'
 export default {
   name: 'header',
   data () {
     return {
     }
   },
-  created () {
+  computed: {
+    ...mapGetters(['customer']),
+    customerName () {
+      return this.customer ? this.customer.name : ''
+    }
+  },
+  mounted () {
   },
   methods: {
     onSearch (value) {
-      console.log(value)
+
+    },
+    logout () {
+      const customer = null
+      const token = null
+      store.commit('UPDATE_CUSTOMER_INFO', { customer, token })
+      if (this.$route.meta.requiresAuth) {
+        this.$router.replace('/')
+      }
     }
   }
 }
@@ -66,6 +94,25 @@ export default {
     margin-left: -0.10rem  !important;
   }
   .home {
+    font-family: 'Merienda', cursive;
+    color: #1DA57A;
+  }
+  .customer-wrap {
+    margin-right: 8px;
+    height: 24px;
+  }
+  a {
+    color: #1DA57A;
+  }
+  a:hover {
+     color: #3db389 !important;
+  }
+  .name {
+    color: #1DA57A;
+    font-family: 'Merienda', cursive;
+  }
+  .logout {
+    cursor: pointer;
     font-family: 'Merienda', cursive;
   }
 </style>
