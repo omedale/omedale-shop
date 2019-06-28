@@ -1,4 +1,5 @@
 @import 'bootstrap-css-only/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css?family=Merienda&display=swap');
 
 
 .flex-space-between {
@@ -6,7 +7,7 @@
   justify-content: space-between;
 }
 .ant-btn .anticon {
-  vertical-align: unset !important;
+  vertical-align: 0.08rem !important;
 }
 .filter-item {
   margin-left: 3px;
@@ -45,6 +46,17 @@
   margin-bottom: 20px;
 }
 
+a {
+  text-decoration: none !important;
+  &:hover {
+    text-decoration: none !important;
+  }
+}
+
 .anchor-button {
   text-decoration: none !important;
+}
+
+.anticon {
+  vertical-align: unset;
 }
