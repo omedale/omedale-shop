@@ -70,10 +70,10 @@ export default {
 
 <style>
 .products {
-  background: #F7F8FB;
+  background: #e5e5e5;
   padding: 30px 0;
   padding-left: 15px;
-  padding-right: 15px
+  padding-right: 15px;
 }
 .pagination-wrapper {
   justify-content: center;

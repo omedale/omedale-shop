@@ -4,12 +4,18 @@
     <section class="section-wrapper">
       <div class="container">
         <div class="row align-items-center">
-          <div class="col-lg-6 col-sm-12">
-            <router-link :to="'/'" class="home">
+          <div class="flex-pull-left col-md-6 col-lg-6 col-sm-12">
+            <router-link :to="'/'" class="home py-1">
               <h3 class="primary-color">My Shop</h3>
             </router-link>
+            <a-input-search
+                  placeholder="search"
+                  class="search-bar py-1"
+                  :size="'small'"
+                  @search="onSearch"
+                />
           </div>
-          <div class="flex-pull-right col-lg-6 col-sm-12">
+          <div class="flex-pull-right col-md-6 col-lg-6 col-sm-12">
             <div class="customer-wrap py-1">
               <span>Hi</span>
               <span v-if="customerName">
@@ -21,19 +27,13 @@
                 <span><router-link :to="'/customer/login'">Login</router-link></span> or
                 <span><router-link :to="'/customer/register'">Register</router-link></span>
               </span>
-            </div>
-            <div class="no-gutters py-1">
-                <a-input-search
-                placeholder="search"
-                class="search-bar"
-                :size="'small'"
-                @search="onSearch"
-              />
-              <router-link :to="'/cart'" class="">
-                  <span>
-                    <a-badge :count="1"><a-avatar shape="square" icon="shopping-cart" /></a-badge>
-                  </span>
-              </router-link>
+              <span class="no-gutters cart py-1">
+                <router-link :to="'/cart'" class="">
+                    <span>
+                      <a-badge :count="1"><a-avatar shape="square" icon="shopping-cart" /></a-badge>
+                    </span>
+                </router-link>
+              </span>
             </div>
           </div>
         </div>
@@ -114,5 +114,19 @@ export default {
   .logout {
     cursor: pointer;
     font-family: 'Merienda', cursive;
+  }
+  h3 {
+    font-size: unset;
+  }
+  @media screen and (max-width: 768px) {
+    .flex-pull-right {
+      display: unset;
+    }
+    .cart, .search-bar {
+      float: right;
+    }
+    .flex-pull-left {
+      justify-content: space-between;
+    }
   }
 </style>
