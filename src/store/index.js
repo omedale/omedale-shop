@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
 import customer from './customer'
 import product from './product'
+import config from './config'
 
 Vue.use(Vuex)
 
@@ -12,7 +13,8 @@ export default new Vuex.Store({
   ],
   modules: {
     customer,
-    product
+    product,
+    config
   },
   state: {},
   mutations: {},

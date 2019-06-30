@@ -5,7 +5,7 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="flex-pull-left col-md-6 col-lg-6 col-sm-12">
-            <router-link :to="'/'" class="home py-1">
+            <router-link :to="'/'" class="home link py-1">
               <h3 class="primary-color">My Shop</h3>
             </router-link>
             <a-input-search
@@ -24,11 +24,11 @@
               </span>
               <span v-else>
                 |
-                <span><router-link :to="'/customer/login'">Login</router-link></span> or
-                <span><router-link :to="'/customer/register'">Register</router-link></span>
+                <span><router-link :to="'/customer/login'" class="link">Login</router-link></span> or
+                <span><router-link :to="'/customer/register'" class="link">Register</router-link></span>
               </span>
               <span class="no-gutters cart py-1">
-                <router-link :to="'/cart'" class="">
+                <router-link :to="'/cart'" class="link">
                     <span>
                       <a-badge :count="1"><a-avatar shape="square" icon="shopping-cart" /></a-badge>
                     </span>
@@ -101,10 +101,10 @@ export default {
     margin-right: 8px;
     height: 24px;
   }
-  a {
+  .link {
     color: #1DA57A;
   }
-  a:hover {
+  .link:hover {
      color: #3db389 !important;
   }
   .name {

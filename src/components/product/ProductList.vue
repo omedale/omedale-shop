@@ -22,24 +22,30 @@
 import { mapGetters } from 'vuex'
 import ProductItem from './ProductItem.vue'
 import ProductDetail from './ProductDetail'
-import productService from '@/services/product'
-import store from '@/store'
+import productMixin from '@/mixins/product'
 export default {
   name: 'product-list',
+  mixins: [productMixin],
   data () {
     return {
       current: 1,
       showModal: false,
-      product: {}
+      product: {},
+      isLoading: false
     }
   },
   created () {
+    const queryPage = this.$router.history.current.query.page || 1
+    this.current = parseInt(queryPage)
     this.getProducts()
   },
   methods: {
     onPageChange (current) {
       this.current = current
       this.getProducts()
+      this.$router.replace({query: {
+        page: this.current
+      }})
     },
     showProductDetail (product) {
       this.product = product
@@ -49,13 +55,8 @@ export default {
       this.showModal = false
       this.product = {}
     },
-    async getProducts () {
-      const response = await productService.getProducts(this.current)
-      if (response.status === 200 && response.data && response.data.rows) {
-        const data = response.data
-        const currentPage = this.current
-        store.commit('ADD_PRODUCTS', { data, currentPage })
-      }
+    getProducts () {
+      this.findProdcut('', 'ALL_PRODUCTS')
     }
   },
   computed: {
