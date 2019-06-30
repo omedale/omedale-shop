@@ -68,6 +68,11 @@ export default {
       if (response.status === 200 && response.data.attributes) {
         const data = response.data
         store.commit('ADD_CONFIG', { data })
+        if (!this.isValidCartId) {
+          const status = true
+          const cartId = data.cart_id
+          store.commit('UPDATE_CART_CONFIG', { cartId, status })
+        }
         this.minPrice = this.filterByPriceRange[0]
         this.maxPrice = this.filterByPriceRange[1]
         this.categoryIds = this.categories.filter(category =>

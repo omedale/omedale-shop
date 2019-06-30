@@ -4,7 +4,7 @@ import store from '@/store'
 export default {
   computed: {
     ...mapGetters(['departments', 'categories', 'sizes', 'colors',
-      'filterByPriceRange', 'filterByCategoryIds', 'filterByDepartmentIds', 'searchWord'])
+      'filterByPriceRange', 'filterByCategoryIds', 'filterByDepartmentIds', 'searchWord', 'isValidCartId'])
   },
   methods: {
     async findProdcut (searchQuery = '', type) {

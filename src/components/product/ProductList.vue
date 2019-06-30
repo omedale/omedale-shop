@@ -12,6 +12,9 @@
   </div>
   <product-detail
     :product="product"
+    :images="images"
+    :colors="colors"
+    :sizes="sizes"
     :showModal="showModal"
     @close-product-detail="closeProductModal"
   ></product-detail>
@@ -32,7 +35,8 @@ export default {
       current: 1,
       showModal: false,
       product: {},
-      isLoading: false
+      isLoading: false,
+      images: []
     }
   },
   created () {
@@ -55,6 +59,10 @@ export default {
       this.$router.push({query: query})
     },
     showProductDetail (product) {
+      this.images = []
+      const baseUrl = 'static/product_images/'
+      this.images.push(`${baseUrl + product.image}`)
+      this.images.push(`${baseUrl + product.image_2}`)
       this.product = product
       this.showModal = true
     },
