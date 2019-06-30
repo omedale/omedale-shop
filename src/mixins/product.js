@@ -4,7 +4,7 @@ import store from '@/store'
 export default {
   computed: {
     ...mapGetters(['departments', 'categories', 'sizes', 'colors',
-      'filterByPriceRange', 'filterByCategoryIds', 'filterByDepartmentIds'])
+      'filterByPriceRange', 'filterByCategoryIds', 'filterByDepartmentIds', 'searchWord'])
   },
   methods: {
     async findProdcut (searchQuery = '', type) {
@@ -17,13 +17,15 @@ export default {
       if (type === 'ALL_PRODUCTS') {
         response = await ProductService.getProducts(this.current, filter)
       } else {
-        response = await ProductService.searchProducts(searchQuery, filter)
+        response = await ProductService.searchProducts(this.current, searchQuery, filter)
       }
       if (response.status === 200 && response.data && response.data.rows) {
         const data = response.data
         const currentPage = this.current
         store.commit('ADD_PRODUCTS', { data, currentPage })
       }
+      const query = this.searchWord ? {q: this.searchWord, page: this.current} : {page: this.current}
+      this.$router.push({query: query})
       this.isLoading = false
     },
     resetUrl () {

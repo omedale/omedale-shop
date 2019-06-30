@@ -23,6 +23,7 @@ import { mapGetters } from 'vuex'
 import ProductItem from './ProductItem.vue'
 import ProductDetail from './ProductDetail'
 import productMixin from '@/mixins/product'
+import store from '@/store'
 export default {
   name: 'product-list',
   mixins: [productMixin],
@@ -36,6 +37,13 @@ export default {
   },
   created () {
     const queryPage = this.$router.history.current.query.page || 1
+    if (this.$router.history.current.query.q) {
+      const searchWord = this.$router.history.current.query.q
+      store.commit('UPDATE_SEARCH_WORD', { searchWord })
+    } else {
+      const searchWord = ''
+      store.commit('UPDATE_SEARCH_WORD', { searchWord })
+    }
     this.current = parseInt(queryPage)
     this.getProducts()
   },
@@ -43,9 +51,8 @@ export default {
     onPageChange (current) {
       this.current = current
       this.getProducts()
-      this.$router.replace({query: {
-        page: this.current
-      }})
+      const query = this.searchWord ? {q: this.searchWord, page: this.current} : {page: this.current}
+      this.$router.push({query: query})
     },
     showProductDetail (product) {
       this.product = product
@@ -56,7 +63,8 @@ export default {
       this.product = {}
     },
     getProducts () {
-      this.findProdcut('', 'ALL_PRODUCTS')
+      const findType = this.searchWord ? 'SEARCH_PRODUCTS' : 'ALL_PRODUCTS'
+      this.findProdcut(this.searchWord, findType)
     }
   },
   computed: {

@@ -12,6 +12,7 @@
                   placeholder="search"
                   class="search-bar py-1"
                   :size="'small'"
+                  @change="onSearchChange"
                   @search="onSearch"
                 />
           </div>
@@ -46,10 +47,13 @@
 <script>
 import { mapGetters } from 'vuex'
 import store from '@/store'
+import productMixin from '@/mixins/product'
 export default {
   name: 'header',
+  mixins: [productMixin],
   data () {
     return {
+      current: 1
     }
   },
   computed: {
@@ -61,8 +65,21 @@ export default {
   mounted () {
   },
   methods: {
-    onSearch (value) {
-
+    onSearch (searchWord) {
+      store.commit('UPDATE_SEARCH_WORD', { searchWord })
+      const findType = this.searchWord ? 'SEARCH_PRODUCTS' : 'ALL_PRODUCTS'
+      this.findProdcut(this.searchWord, findType)
+      if (this.searchWord) {
+        this.$router.push({query: {
+          q: searchWord
+        }})
+      }
+    },
+    onSearchChange (event) {
+      if (event.target.value === '') {
+        const searchWord = ''
+        store.commit('UPDATE_SEARCH_WORD', { searchWord })
+      }
     },
     logout () {
       const customer = null

@@ -10,13 +10,17 @@ export default {
     totalProducts: null,
     filterByDepartmentIds: [],
     filterByCategoryIds: [],
-    filterByPriceRange: [0, 0]
+    filterByPriceRange: [0, 0],
+    searchWord: ''
   },
   mutations: {
     ADD_PRODUCTS (state, { data, currentPage }) {
       state.products = data && data.rows ? data.rows : []
       state.totalProducts = data && data.count ? data.count : 1
       state.currentPage = currentPage
+    },
+    UPDATE_SEARCH_WORD (state, { searchWord }) {
+      state.searchWord = searchWord
     },
     UPDATE_FILTERS (state, { departmentIds, categoryIds, priceRange }) {
       state.filterByCategoryIds = categoryIds
@@ -36,6 +40,7 @@ export default {
     totalProducts: state => state.totalProducts,
     filterByDepartmentIds: state => state.filterByDepartmentIds,
     filterByCategoryIds: state => state.filterByCategoryIds,
-    filterByPriceRange: state => state.filterByPriceRange
+    filterByPriceRange: state => state.filterByPriceRange,
+    searchWord: state => state.searchWord
   }
 }

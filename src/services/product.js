@@ -10,8 +10,8 @@ export default {
         return error.response
       })
   },
-  searchProducts (searchQuery = '', filterData = {department_ids: [], category_ids: [], price_range: []}) {
-    return Api().get(`api/products/search?q=${searchQuery}&filter=${JSON.stringify(filterData)}`)
+  searchProducts (page, searchQuery = '', filterData = {department_ids: [], category_ids: [], price_range: []}) {
+    return Api().get(`api/products/search?page=${page}&q=${searchQuery}&filter=${JSON.stringify(filterData)}`)
       .then(response => {
         return response
       })
