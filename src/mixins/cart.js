@@ -12,7 +12,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['cartId', 'carts', 'totalItem', 'currentTaxRate', 'currentTaxId', 'regions']),
+    ...mapGetters(['cartId', 'carts', 'totalItem', 'currentTaxRate', 'currentTaxId', 'regions', 'customer']),
     getShippingPrice () {
       return this.toPrice(this.shippingPrice)
     },
