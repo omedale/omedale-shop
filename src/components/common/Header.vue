@@ -71,6 +71,9 @@ export default {
   },
   methods: {
     onSearch (searchWord) {
+      if (this.$router.history.current.path !== '/home') {
+        this.$router.replace('/')
+      }
       store.commit('UPDATE_SEARCH_WORD', { searchWord })
       const findType = this.searchWord ? 'SEARCH_PRODUCTS' : 'ALL_PRODUCTS'
       this.findProdcut(this.searchWord, findType)

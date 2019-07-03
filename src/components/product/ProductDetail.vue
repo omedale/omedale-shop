@@ -1,10 +1,12 @@
 <template>
   <div>
     <a-modal
+      :destroyOnClose="true"
       :width="600"
       :title="product.name"
       v-model="showModal"
       :closable="false"
+      :maskClosable="false"
       :footer="null"
       @ok="closeProductModal"
     >
@@ -72,6 +74,8 @@ export default {
   },
   methods: {
     closeProductModal (e) {
+      this.color = ''
+      this.size = ''
       this.$emit('close-product-detail')
     },
     getImgUrl (i) {
@@ -88,6 +92,8 @@ export default {
         return
       }
       this.addOrUpdateCart(data, 1)
+      this.color = ''
+      this.size = ''
     }
   }
 }
