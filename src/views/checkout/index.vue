@@ -46,7 +46,8 @@
                   {
                     rules: [{
                       required: true, message: 'Please input your name!',
-                    }]
+                    }],
+                    initialValue: (customer.name || '')
                   }
                 ]"
                 placeholder="Name"
@@ -64,7 +65,8 @@
                       type: 'email', message: 'The input is not valid E-mail!',
                     }, {
                       required: true, message: 'Please input your E-mail!',
-                    }]
+                    }],
+                    initialValue: (customer.email || '')
                   }
                 ]"
                  placeholder="your@email.com"
@@ -80,7 +82,8 @@
                           {
                             rules: [{
                               required: true, message: 'Please input your Address!',
-                            }]
+                            }],
+                            initialValue: (customer.address_1 || '')
                           }
                         ]"
                         placeholder="23 Suxxess pile way"
@@ -92,7 +95,7 @@
                   <a-form-item
                     label="Address 2 (optional)">
                     <a-input
-                      v-decorator="['address2']"
+                      v-decorator="['address2', {initialValue: (customer.address_1 || '')}]"
                         placeholder="Apartment or Flat"
                       >
                       </a-input>
@@ -109,7 +112,8 @@
                           {
                             rules: [{
                               required: true, message: 'Please input city!',
-                            }]
+                            }],
+                            initialValue: (customer.city || '')
                           }
                         ]"
                         placeholder="New York"
@@ -126,7 +130,8 @@
                           {
                             rules: [{
                               required: true, message: 'Please input country!',
-                            }]
+                            }],
+                            initialValue: (customer.country || '')
                           }
                         ]"
                         placeholder="USA"
@@ -176,14 +181,15 @@
                 </a-col>
                 <a-col :span="6">
                    <a-form-item
-                    label="Zip Code">
+                    label="Postal Code">
                     <a-input
                         v-decorator="[
                           'zip',
                           {
                             rules: [{
-                              required: true, message: 'Please input country zip code!',
-                            }]
+                              required: true, message: 'Please input country postal code!',
+                            }],
+                            initialValue: (customer.postal_code || '')
                           }
                         ]"
                         placeholder="23401"
@@ -192,13 +198,6 @@
                   </a-form-item>
                 </a-col>
              </a-row>
-            <a-form-item>
-              <a-checkbox
-                v-decorator="['billingAddress', {valuePropName: 'checked'}]"
-              >
-                Shipping address is the same as my billing address
-              </a-checkbox>
-            </a-form-item>
             <a-form-item>
               <a-checkbox
                 v-decorator="['saveInfo', {valuePropName: 'checked'}]"
@@ -231,10 +230,10 @@
           ref="checkoutRef"
           :image="'https://fakeimg.pl/80x80'"
           :name="'Omedale'"
-          :description="'Payment'"
+          :description="description"
           :currency="'USD'"
-          :amount="20"
-          :email="'omedale@gmail.com'"
+          :amount="totalPayableAmount"
+          :email="customer.email || ''"
           :allow-remember-me="false"
           @done="done"
           @opened="opened"
@@ -261,7 +260,13 @@ export default {
       shippingId: 0,
       shippingFee: 0,
       errorMessage: '',
-      loading: false
+      loading: false,
+      description: 'My shop order payment'
+    }
+  },
+  computed: {
+    totalPayableAmount () {
+      return this.getTotal.getAmount()
     }
   },
   methods: {
@@ -308,11 +313,10 @@ export default {
     async createOrder (data, token) {
       const response = await OrderService.order(data)
       if (response.status === 200 && response.data.orderId) {
-        console.log(response)
         const data = {
           stripeToken: token,
           order_id: response.data.orderId,
-          'description': 'Order payment',
+          'description': this.description,
           'amount': Math.round(this.getTotal.getAmount() / 100)
         }
         this.chargeCustomer(data)
