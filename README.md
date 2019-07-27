@@ -1,4 +1,4 @@
-# turing-front2
+# My shop
 
 > A Vue.js project
 
